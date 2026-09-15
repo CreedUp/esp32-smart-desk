@@ -6,10 +6,6 @@
 #include "driver/i2c_master.h"
 #include "esp_log.h"
 
-#define BSP_I2C_PORT      I2C_NUM_0
-#define BSP_I2C_SDA_GPIO  GPIO_NUM_1
-#define BSP_I2C_SCL_GPIO  GPIO_NUM_2
-
 static const char *TAG = "bsp_i2c";
 
 static i2c_master_bus_handle_t i2c_bus_handle = NULL;
@@ -33,7 +29,28 @@ esp_err_t bsp_i2c_init(void)
         }
     };
 
-    ESP_ERROR_CHECK(i2c_new_master_bus(&i2c_bus_config, &i2c_bus_handle));
+    esp_err_t ret = i2c_new_master_bus(
+        &i2c_bus_config,
+        &i2c_bus_handle
+    );
+
+    if (ret != ESP_OK)
+    {
+        ESP_LOGE(
+            TAG,
+            "I2C bus initialization failed: %s",
+            esp_err_to_name(ret)
+        );
+
+        return ret;
+    }
+
+    ESP_LOGI(
+        TAG,
+        "I2C bus initialized: SDA=%d, SCL=%d",
+        (int)BSP_I2C_SDA_GPIO,
+        (int)BSP_I2C_SCL_GPIO
+    );
 
     return ESP_OK;
 }

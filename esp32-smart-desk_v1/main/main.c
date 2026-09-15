@@ -5,6 +5,9 @@
 
 #include "system_monitor.h"
 #include "bsp_i2c.h"
+#include "bsp_pca9557.h"
+#include "bsp_spi.h"
+#include "bsp_lcd.h"
 
 #include "driver/i2c_master.h"
 
@@ -19,19 +22,18 @@ void app_main(void)
 
     i2c_master_bus_handle_t i2c_bus_handle = bsp_i2c_get_handle();
 
-    esp_err_t ret = i2c_master_probe(
-        i2c_bus_handle,
-        PCA9557_I2C_ADDRESS,
-        I2C_PROBE_TIMEOUT_MS
+    ESP_ERROR_CHECK(bsp_pca9557_init(i2c_bus_handle));
+
+    ESP_ERROR_CHECK(
+        bsp_spi_bus_init()
     );
 
-    if(ret != ESP_OK)
-    {
-        ESP_LOGW(TAG, "PCA9557 get failed");
-    }
-    else
-    {
-        ESP_LOGI(TAG, "PCA9557 on bus !");
-    }
+    ESP_ERROR_CHECK(
+        bsp_lcd_init()
+    );
+    
+    bsp_lcd_draw_color_bars();
+
+    ESP_ERROR_CHECK(bsp_pca9557_dump_registers());
 
 }
