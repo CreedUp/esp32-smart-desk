@@ -1,10 +1,9 @@
 idf_component_register(
-    SRCS "main.c"
+    SRCS "system_monitor.c"
     INCLUDE_DIRS "."
-    PRIV_REQUIRES
-        system_monitor
-        freertos
+    REQUIRES
         esp_common
+    PRIV_REQUIRES
+        freertos
         log
-        esp_psram
 )
