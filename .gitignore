@@ -1,0 +1,17 @@
+# Build output
+build/
+
+# Downloaded components
+managed_components/
+
+# Generated configuration
+sdkconfig
+sdkconfig.old
+
+# Local editor settings
+.vscode/
+.clangd
+
+# Python cache
+__pycache__/
+*.pyc
