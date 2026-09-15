@@ -4,6 +4,7 @@ idf_component_register(
     PRIV_REQUIRES
         system_monitor
         bsp_i2c
+        bsp_pca9557
         freertos
         esp_common
         log

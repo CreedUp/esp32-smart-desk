@@ -4,8 +4,9 @@
 #include "esp_err.h"
 #include "driver/i2c_types.h"
 
-#define PCA9557_I2C_ADDRESS       0x19
-#define I2C_PROBE_TIMEOUT_MS      100
+#define BSP_I2C_PORT                I2C_NUM_0
+#define BSP_I2C_SDA_GPIO            GPIO_NUM_1
+#define BSP_I2C_SCL_GPIO            GPIO_NUM_2
 
 /**
  * @brief 初始化板载共享 I2C 总线
