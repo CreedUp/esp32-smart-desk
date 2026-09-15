@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # ESP32 Smart Desk
 
 基于立创实战派 ESP32-S3 的桌面互动摆件。
@@ -17,6 +16,3 @@
 - 8MB Octal PSRAM，80MHz
 - PSRAM 启动内存测试通过
 - CPU 频率为 240MHz
-=======
-# ESP32S3-
->>>>>>> origin/main
