@@ -3,6 +3,7 @@ idf_component_register(
     INCLUDE_DIRS "."
     PRIV_REQUIRES
         system_monitor
+        bsp_i2c
         freertos
         esp_common
         log
