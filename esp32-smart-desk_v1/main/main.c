@@ -6,6 +6,11 @@
 #include "system_monitor.h"
 #include "bsp_i2c.h"
 #include "bsp_pca9557.h"
+<<<<<<< HEAD
+=======
+#include "bsp_spi.h"
+#include "bsp_lcd.h"
+>>>>>>> feature/bsp-lcd
 
 #include "driver/i2c_master.h"
 
@@ -21,7 +26,21 @@ void app_main(void)
     i2c_master_bus_handle_t i2c_bus_handle = bsp_i2c_get_handle();
 
     ESP_ERROR_CHECK(bsp_pca9557_init(i2c_bus_handle));
+<<<<<<< HEAD
     
+=======
+
+    ESP_ERROR_CHECK(
+        bsp_spi_bus_init()
+    );
+
+    ESP_ERROR_CHECK(
+        bsp_lcd_init()
+    );
+    
+    bsp_lcd_draw_color_bars();
+
+>>>>>>> feature/bsp-lcd
     ESP_ERROR_CHECK(bsp_pca9557_dump_registers());
 
 }
