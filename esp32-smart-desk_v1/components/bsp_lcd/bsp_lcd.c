@@ -69,7 +69,7 @@ static DMA_ATTR uint16_t lcd_line_buffer[BSP_LCD_H_RES];
  * “ST7789 与 SPI3 总线之间的通信通道”。
  *
  */
-static esp_lcd_panel_io_handle_t lcd_io_handle = NULL;
+esp_lcd_panel_io_handle_t lcd_io_handle = NULL;
 
 /*
  * ST7789 Panel 句柄。
@@ -77,7 +77,7 @@ static esp_lcd_panel_io_handle_t lcd_io_handle = NULL;
  * lcd_io_handle 负责“怎么传输”；
  * lcd_panel_handle 负责“屏幕是什么型号、如何初始化和绘图”。
  */
-static esp_lcd_panel_handle_t lcd_panel_handle = NULL;
+esp_lcd_panel_handle_t lcd_panel_handle = NULL;
 
 //LCD背光控制函数
 esp_err_t bsp_lcd_backlight_set(bool on)
@@ -455,7 +455,7 @@ esp_err_t bsp_lcd_init(void)
     * BSP_LCD_COLOR_WHITE = 0xFFFF，
     * RGB565中的红、绿、蓝分量全部为最大值。
     */
-    ret = bsp_lcd_fill_color(BSP_LCD_COLOR_RED);
+    ret = bsp_lcd_fill_color(BSP_LCD_COLOR_BLACK);
 
     if (ret != ESP_OK)
     {
@@ -567,3 +567,14 @@ esp_err_t bsp_lcd_draw_color_bars(void)
     return ESP_OK;
 }
 
+//获取esp_lcd_panel_io_handle_t的句柄
+esp_lcd_panel_io_handle_t bsp_lcd_get_io_handle(void)
+{
+    return lcd_io_handle;
+}
+
+//获取esp_lcd_panel_handle_t的句柄
+esp_lcd_panel_handle_t bsp_lcd_get_panel_handle(void)
+{
+    return lcd_panel_handle;
+}

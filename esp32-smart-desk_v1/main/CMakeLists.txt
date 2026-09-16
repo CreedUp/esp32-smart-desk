@@ -5,11 +5,9 @@ idf_component_register(
         system_monitor
         bsp_i2c
         bsp_pca9557
-<<<<<<< HEAD
-=======
         bsp_spi
         bsp_lcd
->>>>>>> feature/bsp-lcd
+        app_ui
         freertos
         esp_common
         log

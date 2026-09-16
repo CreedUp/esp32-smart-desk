@@ -5,6 +5,8 @@
 #include <stdint.h>
 
 #include "esp_err.h"
+#include "esp_lcd_panel_io.h"
+#include "esp_lcd_panel_ops.h"
 
 /* LCD 逻辑分辨率：横屏模式 */
 #define BSP_LCD_H_RES                 320
@@ -60,7 +62,7 @@ esp_err_t bsp_lcd_fill_color(uint16_t color);
  */
 esp_err_t bsp_lcd_backlight_set(bool on);
 
-/**
+/*
  * @brief 显示RGB565五色条
  *
  * 从左到右显示：
@@ -69,5 +71,19 @@ esp_err_t bsp_lcd_backlight_set(bool on);
  * 每个色条宽64像素，高240像素。
  */
 esp_err_t bsp_lcd_draw_color_bars(void);
+
+/**
+ * @brief 获取LCD Panel IO句柄
+ *
+ * 提供给esp_lvgl_port使用。
+ */
+esp_lcd_panel_io_handle_t bsp_lcd_get_io_handle(void);
+
+/**
+ * @brief 获取LCD Panel句柄
+ *
+ * 提供给esp_lvgl_port注册显示设备。
+ */
+esp_lcd_panel_handle_t bsp_lcd_get_panel_handle(void);
 
 #endif
